@@ -1,17 +1,32 @@
 <?php
 
-include('connect.inc');
+session_start();
 
-$sql = "INSERT INTO members (id, usename, password)
-VALUES ('42', 'nikol', '882')";
+include("connect.php");
 
-if (mysqli_query($conn, $sql)) {
-    $last_id = mysqli_insert_id($conn);
-    echo "New record created successfully. Last inserted ID is: " . $last_id;
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+if(isset($_GET['p']) && $_GET['p'] != ''){
+    $p = $_GET['p'];
+}
+else{
+    $p = 'main';
 }
 
-mysqli_close($conn);
+if(file_exists("template/prerender/$p.php")){
+    include_once( "template/prerender/$p.php" );
+}
+else{
+    include_once( 'template/prerender/main.php' );
+}
+
+include_once( "template/header.php" );
+
+if(file_exists('template/html/'.$p.'.html.php')){
+    include_once( 'template/html/'.$p.'.html.php' );
+}
+else{
+    include_once( 'template/html/main.html.php' );
+}
+
+include_once( "template/footer.php" );
 
 ?>

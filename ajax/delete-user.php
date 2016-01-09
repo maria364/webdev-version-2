@@ -1,5 +1,5 @@
 <?php 
-include('connect.php');
+include('../connect.php');
 
 $choose = $_POST['choose'];
 //echo $username;
@@ -10,9 +10,8 @@ if ($choose == 1) {
 		$username = mysql_real_escape_string($_POST['username']);
 		
 		//diagrafoume prwta to fakelo tou xristi me ta arxeia tou 
-		$temp23 = "uploads/".$username;
-		$structure2 = $temp23; 
-		echo $structure2;
+		$temp23 = "uploads/".$username."/";
+		$structure2 = $temp23;
 		rmdir($structure2); //diagrafi tou arxeiou apo to path pou tou exei dwthei parapanw
 		
 		$first = "DELETE FROM users WHERE username='$username'";
