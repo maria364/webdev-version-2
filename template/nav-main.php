@@ -6,4 +6,4 @@
 				<a class="home-button" style="margin-top:-30px" href="#page-top"><img class="logo" src="img/logo.png" alt="logo" height="70%" width="70%" ></a>   
 								
 			</div>
-    </nav>
+</nav>
