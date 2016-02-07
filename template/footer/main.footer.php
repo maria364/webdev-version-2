@@ -1,6 +1,4 @@
-<!-- </section> -->
 <!-- /*Είναι το js που χρησιμοποιείται για την είσοδο. */ -->
-
 <!-- Modal gia allagi kwdikou -->
 <!-- Dimiourgia modal gia aposundesi-->
 <div id="modal-passrecover" class="modal-recoverpass" role="dialog">
