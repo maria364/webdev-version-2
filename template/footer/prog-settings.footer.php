@@ -1,9 +1,6 @@
 
 <script src="http://dmc.trodis.netsteps-apps.gr/plugins/jQuery/jQuery-2.1.4.min.js" type="text/javascript"></script>
-<!-- <script src="http://dmc.trodis.netsteps-apps.gr/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script> -->
 <script src="http://localhost/diplwmatiki/t_selida/bootstrap-daterangepicker-master/moment.min.js" type="text/javascript"></script>
-<!-- <script src="http://dmc.trodis.netsteps-apps.gr/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script> -->
 <script src="http://localhost/diplwmatiki/t_selida/bootstrap-daterangepicker-master/daterangepicker.js" type="text/javascript"></script>
 
 <script>
