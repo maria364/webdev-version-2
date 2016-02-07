@@ -1,6 +1,5 @@
-	
-	
-	<script type="text/javascript">
+
+<script type="text/javascript">
 		function SendEmail(name3,valuemail) {
 
 			var usname2=name3;
