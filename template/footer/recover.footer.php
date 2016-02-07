@@ -41,7 +41,6 @@
 			}
         });
 
-
 function clear() {
  
 	$(".register-form :input").each( function() {
