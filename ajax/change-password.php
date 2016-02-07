@@ -27,10 +27,10 @@ $email_reset = htmlentities($_POST['email_reset'], ENT_QUOTES,"utf-8");
 			    $random = mt_rand() ;
 			        $n=null;
 
-			    $to = "mtsourma@gmail.com"; //$email_reset;
+			    $to = $email_reset;
 				$subject = "Αίτημα αλλαγής κωδικού";
 				$txt = "Γεία σας, \n"."Λάβαμε ένα αίτημα για αλλαγή κωδικού από τη σελίδα sgip.noip.me/?p=main.\n"."Για να γίνει αλλαγή του κωδικού πρόσβασής σας στη σελίδα παρακαλώ πατήστε στον παρακάτω σύνδεσμο:\n "."sgip.noip.me/?p=recover&No=".$random."&email=".$email_reset."\n"."Ευχαριστούμε πολύ.";
-				$headers = "From: webmaster@sgip.noip.me" . "\r\n" ;
+				$headers = "From: webmaster@domain.me" . "\r\n" ;
 
 
 				mail($to,$subject,$txt,$headers);
