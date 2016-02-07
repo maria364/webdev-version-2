@@ -4,7 +4,7 @@
 		$("#register").click( function () {
 		/*εισάγω έλεγχο για το αν οι τιμές είναι κενές ή όχι*/
 			if( $(".input-FirstName").val() == "" || $(".input-LastName").val() == "" )
-			$("#ack").html("Όλα τα παραπάνω πεδία είναι υποχρεωτικά");
+			$("#ack").html("<?php echo htmlentities($message23, ENT_QUOTES,'utf-8') ?>");
 			else
 			/*παίρνω δεδομένω από το register form και τα μεταφέρω στο register.php (Που έχει οριστεί το action της φόρμας, ώστε να εκτελεστεί το Mysql ερώτημα)*/
 				$.post( $(".register-form").attr("action"),

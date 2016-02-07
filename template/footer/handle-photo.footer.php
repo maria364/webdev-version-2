@@ -25,7 +25,7 @@
 	function DeletePhoto(value)
 		{
 		  var photo_name = value;
-		  var x = confirm("Είστε σίγουρος πως θέλετε να διαγράψετε τη φωτογραφία " +photo_name + "?" );
+		  var x = confirm("<?php echo $message16 ?>" +photo_name + "?" );
 		  var choose = 2;
 		  //alert(usname);
 		  
@@ -38,6 +38,7 @@
 					data: {'photo_name': photo_name, 'choose': choose },      //to data emperiexei times logikis {key:value}. to key einai auto pou pairnei tin timi apo ti metavliti kai ti metaferei ston php kwdika. p.x. ston php kwdika tha baloume "$_POST['key']"             
 					success: function(data){
 						alert(data); // this will print you any php / mysql error as an alert  
+						window.location.reload(1);
 					}
 			});
 			

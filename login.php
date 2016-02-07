@@ -2,13 +2,17 @@
 session_start();
 
 include('connect.php');
+include('lang.gr.php');
 
-$username = $_POST['loginusername'];
+error_reporting(E_ALL);
+ini_set('display_errors', 1); 
+
+$username = htmlentities($_POST['loginusername'], ENT_QUOTES,"utf-8");
 $password = md5 ($_POST['loginpassword']);
 $connection = 0;
 
 
-$stmt = $conn->prepare("SELECT 	`identity` FROM `users` WHERE `username`= :username AND `password`= :password");
+$stmt = $conn->prepare("SELECT 	identity FROM users_tsourma WHERE username= :username AND password= :password");
 $stmt->bindValue(':username', $username); //"denei" ti metavliti me to input pou lamvanei apo tin eisodo tou xristi
 $stmt->bindValue(':password', $password);
 $stmt->execute();
@@ -28,16 +32,17 @@ if ( $res== 1 ) {
 	
 		if ( $val == 1) {
 			$type="admin";
-			echo $type;
+			echo htmlentities($type, ENT_QUOTES,"utf-8");
 			
 		} else if ($row['identity'] ==0) {
 			$type="user";
-			echo $type;
+			echo htmlentities($type, ENT_QUOTES,"utf-8");;
 		}
 	//echo $username;
 	
 }else {  
-	echo "fail";
+	$type = "fail";
+	echo htmlentities($type, ENT_QUOTES,"utf-8");; //$message31
 }
 
 /* mysqli_close($conn);

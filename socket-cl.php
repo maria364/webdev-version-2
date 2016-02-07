@@ -2,11 +2,14 @@
 // error_reporting(E_ALL);
 
 include('connect.php');
+include('lang.gr.php');
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1); 
 // session_start();
-
-$result1 = 0; //tin arxikopoioume me 1 wste na min epikoinwnei me to server se periptwsi pou den exei eisaxthei kapoia imerominia i kati den leitourgei swsta.
-
-function check_start_date($conn, $result1){ //stis sunartiseis pou xrisimopoieis mesa sundeseis me ti vasi, prepei na pernaei to $conn san orisma tin klisi tis sunartisis
+// $result1 = 1; //tin arxikopoioume me 1 wste na min epikoinwnei me to server se periptwsi pou den exei eisaxthei kapoia imerominia i kati den leitourgei swsta.
+$result1=null;
+function check_start_date($conn){ //stis sunartiseis pou xrisimopoieis mesa sundeseis me ti vasi, prepei na pernaei to $conn san orisma tin klisi tis sunartisis
 	date_default_timezone_set('Europe/Athens');
 
 	$todaysdate = date("m/d/Y");
@@ -14,7 +17,7 @@ function check_start_date($conn, $result1){ //stis sunartiseis pou xrisimopoieis
 
 	// echo $todaysdate;
 	// echo $todaystime;
-					$quest = "SELECT * FROM `schedule` WHERE `StartDate` = :todaysdate AND `StartTime` = :todaystime";			
+					$quest = "SELECT * FROM schedule_tsourma WHERE startdate = :todaysdate AND starttime = :todaystime";			
 					$el = $conn->prepare($quest);
 					//var_dump($conn);
 					$el->bindValue(':todaysdate', $todaysdate);
@@ -28,15 +31,18 @@ function check_start_date($conn, $result1){ //stis sunartiseis pou xrisimopoieis
 							//echo $row["email"];
 							$id = $row["id"];
 							if ($row["iodevice"] == 0){
-								echo "To sistima sas tha ksekinisei amesws";
-								$msql = "UPDATE schedule SET iodevice ='1' WHERE id='$id'";
+								echo $message40;
+								$c=1;
+								$msql = "UPDATE schedule_tsourma SET iodevice =:iodevice WHERE id=:id";
 								$stmt = $conn->prepare($msql);
+								$stmt->bindParam(':iodevice', $c, PDO::PARAM_INT);
+								$stmt->bindParam(':id', $id, PDO::PARAM_STR);
 								$stmt->execute();
 								$stmt->rowCount();
-								$result1 = 0;
+								$result2 = 0;
 							} else {
-								echo "The device is already open";
-								$result1 = 1;
+								// echo $message41;
+								$result2 = 1;
 							}
 						}
 						//steile start sto socket-cl.php
@@ -45,29 +51,48 @@ function check_start_date($conn, $result1){ //stis sunartiseis pou xrisimopoieis
 						
 
 					} else if ($res == 0){
-						$sql = "INSERT INTO schedule (id, iodevice, StartDate, StartTime, EndDate, EndTime) VALUES ('', '1', '$todaysdate', '$todaystime', '', '')";
-						if ($conn->exec($sql)) {
-							echo "Η ημερομηνία εισήχθη επιτυχώς!";
+						$l=1;
+						$g=0;
+						$f=null;
+						$h=0;
+
+						$sql = "INSERT INTO schedule_tsourma (id, iodevice, startdate, starttime, enddate, endtime) VALUES (:id, :iodevice, :startdate, :starttime, :enddate, :endtime)";
+						$stmt = $conn->prepare($sql);                                           
+						$stmt->bindParam(':id',$f, PDO::PARAM_INT);
+						$stmt->bindParam(':iodevice', $l, PDO::PARAM_INT);
+						$stmt->bindParam(':startdate', $todaysdate, PDO::PARAM_STR);
+						$stmt->bindParam(':starttime', $todaystime, PDO::PARAM_STR);
+						$stmt->bindParam(':enddate', $g, PDO::PARAM_INT);
+						$stmt->bindParam(':endtime', $h, PDO::PARAM_INT);       
+						$stmt->execute();
+						// if ($stmt->execute()) {
+						// 	echo $message51;
 							
-						} else {
-							echo "Αποτυχία εισαγωγής Ημερομηνίας.. ";
-						}
+						// } else {
+						// 	echo $message52;
+						// }
 						
-						$result1 = 0;
+						$result2 = 0;
 					}
 
-
-
-
+					if($result2 ==1){
+						// echo $message41;
+						$result1 = $result2;
+					} else {
+						$result1 = $result2;
+					}
+		return $result1;
 }
 
-function check_stop_date($conn, $result2){
+
+function check_stop_date($conn){
 	date_default_timezone_set('Europe/Athens');
 
 	$todaysdate = date("m/d/Y");
 	$todaystime = date("H:i"); //me kefalaio H =24wro, me mikro h=12wro
 
-	$sql = $conn->prepare("SELECT * FROM `schedule`"); 
+					$sq = "SELECT * FROM schedule_tsourma";
+					$sql = $conn->prepare($sq); 
 	//WHERE `EndDate` = :todaysdate AND `EndTime` = :todaystime");
 					$sql->bindValue(':todaysdate', $todaysdate);
 					$sql->bindValue(':todaystime', $todaystime);
@@ -80,34 +105,44 @@ function check_stop_date($conn, $result2){
 							//echo $row["email"];
 							$id = $row["id"];
 							if ($row["iodevice"] == 1){
-								echo "To sistima sas tha stmatisei amesws";
-								$msql = "UPDATE schedule SET iodevice ='2' WHERE id='$id'";
+								$m=2;
+
+								$msql = "UPDATE schedule_tsourma SET iodevice =:iodevice WHERE id=:id";
 								$stmt = $conn->prepare($msql);
+								$stmt->bindParam(':iodevice', $m);
+								$stmt->bindParam(':id', $id);
 								$stmt->execute();
 								$stmt->rowCount();
-								$result1 = 0;
+								$result2 = 0;
 								
 							} else {
-							echo "The device has already stoped";
-							$result1 = 1;
+							$result2 = 1;
 							}
 						}
 						// echo '<script> sentvalueToSocket("stop"); </script>';
 						
 					}
 
+					if($result2 ==1){
+						// echo $message44;
+						$result1 = $result2;
+					} else {
+						// echo $message43;
+						$result1 = $result2;
+					}
+	return $result1;
 }
 
 
 
-function check_system($conn, $time, $result1){
+function check_system($conn, $time){
 
 date_default_timezone_set('Europe/Athens');
 
 	$todaysdate = date("m/d/Y");
 	$todaystime = date("H:i"); //me kefalaio H =24wro, me mikro h=12wro
 
-	$sql = $conn->prepare("SELECT * FROM `schedule`"); //elegxw mono ean to sustima einai allou anoixto giati auto mono me endiaferei. Thelw mono na to apenergopoiisw gia ligo xrono
+	$sql = $conn->prepare("SELECT * FROM schedule_tsourma"); //elegxw mono ean to sustima einai allou anoixto giati auto mono me endiaferei. Thelw mono na to apenergopoiisw gia ligo xrono
 					$sql->execute();
 					$res = $sql->rowCount();
 								
@@ -117,7 +152,7 @@ date_default_timezone_set('Europe/Athens');
 							//echo $row["email"];
 							$id = $row["id"];
 							if ($row["iodevice"] == 1){
-								echo "Το σύστημά σας θα απενεργοποιηθεί για ".$time." λεπτά.";
+								echo $meggage53."".$time."".$message54;
 								$varmin = date("i");
 								$varhour = date("H");
 								if ($time == 30){    //case1: periptwsi epilogis diarkeias apenergopoiisis 30min
@@ -158,71 +193,105 @@ date_default_timezone_set('Europe/Athens');
 
 								$temp_time = $finalhour.":".$finalmin;
 								$finaltime = $temp_time;
-								$msql = "UPDATE schedule SET iodevice ='0', StartTime = '$finaltime' WHERE id='$id'";
+								$k=0;
+								
+								$msql = "UPDATE schedule_tsourma SET iodevice =:iodevice, StartTime = :finaltime WHERE id=:id";
 								$stmt = $conn->prepare($msql);
+								$stmt->bindParam(':iodevice', $k);
+								$stmt->bindParam(':finaltime', $finaltime);
+								$stmt->bindParam(':id', $id);
 								$stmt->execute();
 								$stmt->rowCount();
 								$result1 = 0;
 								
 							} else {
-							echo "Η συσκευή δεν είναι ανοιχτή";
 							$result1 = 1;
 							}
 						}
 						// echo '<script> sentvalueToSocket("stop"); </script>';
 						
-					} 
+					}
+
+					
+		return $result1;
 }
 
+//MAIN
 
-	$control = $_POST['button'];//mas deixnei poio koumpi exei patithei, to start/stop
-	
+	$control = filter_var($_POST['button'], FILTER_SANITIZE_STRING);//mas deixnei poio koumpi exei patithei, to start/stop
+	// $result1 = 1;
 
 	if ($control=="start")
 	{
-		echo "Επιλέξατε να ξεκινήσει αμέσως η εφαρμογή τοπρόγραμμα αναγνώρισης μαζί με το όπλο σε χρόνο \n";
+		echo $message56;
 		$time = 0; //bazw 0 sti metabliti gia na deiksw oti o xronos ekkinisis einai o twrinos
-		check_start_date($conn, $result1);
+		$return1 = check_start_date($conn);
+		// echo $return1;
+		if($result1 ==1){
+			echo $message41;
+		}
 	} else if ($control=="delayed-start"){
-		$time = $_POST['time'];
+		$time = filter_var($_POST['time'], FILTER_SANITIZE_STRING);
+		
 		if( $time =="" ) {
-			echo ("Δεν έχετε επιλέξει κάποια ώρα.");
+			echo $message57;
+			$result1 = 1;
 		} else{
-			echo "Επιλέξατε να ξεκινήσει η εφαρμογή μετά από ".$time." λεπτά.";
+			echo $message58."".$time."".$message54;
 			//enimerwnw ton pinaka schedule gia na kserw oti i suskeui einai idi anoiti i na tin anoiksei o xristis apo dw. 
-			check_start_date($conn, $result1);
+			$result1 = check_start_date($conn);
+			echo $result1;
 		}
 	}else if($control=="stop") 
 	{
-		echo "Επιλέξατε να σταματήσει το πρόγραμμα αναγνώρισης\n";
 		$time=0;
-		check_stop_date($conn, $result1);
+		$result1 = check_stop_date($conn);
+		if($result1 ==1){
+			echo $message44;
+		} else {
+			echo $message59;
+			echo $message43;
+		}
+
 	} else if ($control=="delayed-stop"){
-		$time = $_POST['time'];
+		$time =filter_var($_POST['time'], FILTER_SANITIZE_STRING);
+		
 		// echo "i wra einai" .$time;
 		if( $time =="" ) {
-			echo ("Δεν έχετε επιλέξει κάποια ώρα.");
+			echo $message57;
+			$result1 = 1;
 		} else{
-			echo "Επιλέξατε να σταματήσει η εφαρμογή μετά από ".$time." λεπτά.";
-			check_stop_date($conn, $result1);
+			
+			$result1 = check_stop_date($conn);
+			if($result1 ==1){
+				echo $message44;
+			} else {
+				echo $message60."".$time."".$message54;
+			}
 		}
 
 	} else if ($control=="temp-stop"){ 
-		$time = $_POST['time'];
+		$time = filter_var($_POST['time'], FILTER_VALIDATE_INT);
+		
 		// echo "i wra einai" .$time;
 		if( $time =="" ) {
-			echo ("Δεν έχετε επιλέξει κάποια ώρα.");
+			echo $message57;
+			$result1 = 1;
 		} else{
-			check_system($conn, $time, $result1);
+			$result1 = check_system($conn, $time);
+			// echo $result1;
+			if($result1 ==1){
+				echo $message55;
+			} 
+			
 			$control = "stop"; //stelnw stop sto server giati thelw ekeini ti stigmi na kleisei i suskeui. tha anoiksei meta apo $time lepta pou exei orisei o xristis.
 			$time = 0;
 		}
 	}
-
 	// }
 if ($result1 == 0){	
 // //ksekina i sundesi client me server mevasi ta stoixeia pou exoun dothei parapanw apo to xristi
-	echo "TCP/IP connection client\n";
+	echo $message32;
 	
 	// $address=gethostbyname($ip);
 	$address="127.0.0.1";
@@ -232,20 +301,20 @@ if ($result1 == 0){
 
 		if($sock===false)
 		{
-			echo "socket_create() failed: reason: " . socket_strerror(socket_last_error()) . "\n";
+			echo $message33."" . socket_strerror(socket_last_error()) . "\n";
 		}else{
 
-			echo "OK. socket created\n";
+			echo $message34;
 		}
 
-		echo "Attempting to connect to '$address' on port '$service_port'...\n";
+		echo $message35."" . $address."".$message61."".$service_port."...\n";
 		$result=socket_connect($sock,$address,$service_port);
 
 		if($result===false)
 		{
-			die( "socket_connect() failed: reason: " .socket_strerror(socket_last_error($sock)) . "\n");
+			die( $message36."" .socket_strerror(socket_last_error($sock)) . "\n");
 		}else {
-			echo "ok. client connected\n";	
+			echo $message37;	
 		}
 
 		$next=$time."\r\n";
@@ -256,11 +325,11 @@ if ($result1 == 0){
 		// $out='';
 
 		//for(;;){
-		echo "Sending Http head request...";
+		echo $message38;
 		socket_write($sock,$next,strlen($next));
-		echo "ok.\n";
+		echo $message62;
 		socket_write($sock,$in,strlen($in));
-		echo "readingresponse: \n\n";
+		echo $message39;
 		//while($out=socket_read($sock,2048)){ //ekleine ti sundesi kathe fora pou ekleine kai o server, oxi mono tou me to pou dteilei-lavei dedomena
 		//	echo $out;
 		//}

@@ -1,12 +1,11 @@
-<!-- Header -->
-    <header>
+<header>
         <div class="container">
             <div class="row">
                 <div class="col-md-10">
 				<?php
-				$user_edit= mysql_real_escape_string($_GET['user']);
+				$user_edit= htmlentities($_GET['user'], ENT_QUOTES,"utf-8");
 					echo '<div id="imt">';
-					$temp2 = "uploads/".$_GET['user']."/";
+					$temp2 = "uploads/".$user_edit."/";
 					$folder1=$temp2;
 					$filetype1 = '*.*';
 					$files1 = glob($folder1.$filetype1);
@@ -30,5 +29,5 @@
 				</div>
 			</div>
 		</div>
-	</header>
+</header>
 	

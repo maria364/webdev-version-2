@@ -19,6 +19,10 @@
 						<input class="input-login-password" name="loginpassword" type="password"  placeholder="">
 					</p>
 
+					<!--<p class="fieldset">
+						<input type="checkbox" id="remember-me" checked>
+						<label class="remember-me" for="remember-me">Να παραμείνω συνδεδεμένος</label>
+					</p>-->
 					<br/>
 					<p class="fieldset">
 						<button class="submit" id="login" name="login"><?php echo htmlentities($message14, ENT_QUOTES,'utf-8') ?></button>

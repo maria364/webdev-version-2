@@ -1,10 +1,12 @@
+
 <!-- edw mpainei to gnko footer (html) -->
+
 <footer class="text-center">
         <div class="footer-below">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                    <h5>Copyright &copy <i><?php echo htmlentities($message154, ENT_QUOTES,"utf-8") ?></i></h5>
+                    <h5>Copyright &copy <i>Πανεπιστήμιο Δυτικής Μακεδονίας, τμήμα Μηχανικών Πληροφορικής και Τηλεπικοινωνιών</i></h5>
                     </div>
                 </div>
             </div>
@@ -22,10 +24,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <span title="Close" class="close close_modal" align="left">&times;</span>
-        <h4 class="modal-title"><?php echo htmlentities($message117, ENT_QUOTES,"utf-8") ?></h4>
+        <h4 class="modal-title">Αποσύνδεση</h4>
       </div>
       <div class="modal-body">
-            <label><?php echo htmlentities($message153, ENT_QUOTES,"utf-8") ?></label>
+            <label>Είστε σίγουρος πως θέλετε να αποσυνδεθείτε;</label>
                         
             <div id="ack2"></div>
             <br/>
@@ -44,6 +46,40 @@
 
   </div>
 </div>
+
+
+<!-- Dimiourgia modal gia ksexasate ton kwdiko sas-->
+<div id="modal-forget" class="modal-forget" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Periexomeno Modal -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span title="Close" class="close close_modal" align="left">&times;</span>
+        <h4 class="modal-title">Αλλαγή κωδικού πρόσβασης</h4>
+		<hr>
+		<label>Παρακαλώ συμληρώστε τη διεύθυνσή σας για να σας αποσταλεί mail με τα στοιχεία για την αλλαγή του κωδικού.</label>
+      </div>
+		<div class="modal-body">
+		<form class="forget-form" action="check.php" method="post">
+					<p class="fieldset">
+						<label class="forget-email" for="forget-email">E-mail</label>
+						<input class="input-forget-email" type="email" name="forget-email" placeholder="example@email.com">
+					</p>
+
+					<p class="fieldset">
+						<button class="submit" id="send">Αποστολή</button>
+					</p>
+		</form>      
+		<div id="ack3"></div>		
+      
+		</div>
+		
+    </div>
+
+  </div>
+</div>	
+
 
 
 
@@ -77,24 +113,6 @@ $(document).ready(function() {
 });
 
 </script>
-
-
-<script> /*epilegoume tin*/
-   $(document).ready(function() {
-    var full = 1; //To "0" deixnei oti i ekdosi einai gia to enswmatwmeno sistika (aka raspberry pi). Stin ekdosi auti den leitourgeii eisagwgi fwtografiwn
-                 //antistixa,to "1" deixnei oti i ekdosi einai gia to laptop kai periexeitin eisagwgi kai ti diaxeirisi fwtografiwn.
-        if(full==0){
-                $(".btn-group-vertical").hide();
-                $("#delete-user-duplicate").show();
-                // $("#check-photo").show();
-        }
-    });
-</script>
-
-
-
-
-
 
 <?php
 

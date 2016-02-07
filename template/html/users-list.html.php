@@ -1,5 +1,4 @@
-<!-- Header -->
-    <header>
+<header>
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -13,7 +12,7 @@
 								
 							if ($res > 0)
 							{
-								echo "<table id='t01' class='table'><thead><tr><th>Username</th><th>Ονοματεπώνυμο</th><th>E-mail</th></tr></thead>";
+								echo "<table id='t01' class='table'><thead><tr><th>".htmlentities($message146, ENT_QUOTES,"utf-8")."</th><th>".htmlentities($message152, ENT_QUOTES,"utf-8")."</th><th>".htmlentities($message147, ENT_QUOTES,"utf-8")."</th></tr></thead>";
 								// echo "<form action='edit_users.php' method='post'>"; //einai gia na pernaei to onoma tou user pou epileksame apo to ena arxeio sto allo - peritto pleon
 								echo "<tbody>";
 								while($row = $sql->fetch(PDO::FETCH_ASSOC)) {
@@ -27,18 +26,14 @@
 								echo "</table>";
 								
 							} else {
-								echo "Δεν υπάρχει κανένας εγγεγραμμένος χρήστης.";
+								echo htmlentities($message12, ENT_QUOTES,"utf-8");
 							}
 					?>
 					</div>
 
 					<div id="show" class="show"></div>
-											
-
-
-					
 
                 </div>
             </div>
         </div>
-    </header>
+</header>

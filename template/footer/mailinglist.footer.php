@@ -7,7 +7,7 @@
 			var sendemail2=valuemail;
 			var check = 6;
 			var select = "yes";
-			var y = confirm("Είστε σίγουροι πως θέλετε να αποστέλεται e-mail ενημέρωσης στον χρήστη " +usname2 + "?" );
+			var y = confirm("<?php echo $message17 ?>" +usname2 + "?" );
 			//alert(usname2);
 			//alert(sendemail2);
 				  if (y == true)
@@ -31,7 +31,7 @@
 		function NotSendEmail(usname,valuemail) {
 			var usname;
 			var valuemail;
-			var z = confirm("Είστε σίγουροι πως θέλετε να μην αποστέλονται e-mail ενημέρωσης στον χρήστη " +usname + "?" );
+			var z = confirm("<?php echo $message18 ?>" +usname + "?" );
 			var check = 6;
 			var select = "no";
 				if (z == true)

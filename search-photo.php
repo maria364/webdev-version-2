@@ -1,6 +1,4 @@
-
-		
-		<?php
+<?php
 		
 		// echo "mpika sto form";
 		$startdate = $_POST['start_date'];

@@ -1,4 +1,3 @@
-
 <header>
 	<div class="col-lg-8 " >
 		<div  id="dashboard-first-row">

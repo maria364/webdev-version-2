@@ -1,8 +1,11 @@
-
 <?php
 
 include('connect.php');
-	// for ($s=0;$s<10;$s++){
+include('lang.gr.php');
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1); 
 
 $folder2 = "alert/";
 $filetype2 = "*.*";
@@ -17,16 +20,17 @@ $value = "alert ";
 			$count3 = count($files2);
 
 				if(strcmp($count2, $count3) !== 0){
-					echo "Entopistike kindinos\n";					
+					echo htmlentities($message24, ENT_QUOTES,"utf-8");					
 					
-					$sql = $conn->prepare("SELECT `email` FROM `users` WHERE `sendemail` = :sendemail");
-					$sql->bindValue(':sendemail', 1);
-					$sql->execute();
-					$res = $sql->rowCount();
+					$sql= "SELECT email FROM users_tsourma WHERE sendemail = :sendemail"; 
+					$stmt = $conn->prepare($sql);
+					$stmt->bindValue(':sendemail', $m=1);
+					$stmt->execute();
+					$res = $stmt->rowCount();
 								
 					if ($res >0){
 
-						while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+						while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 							//echo $row["email"];
 							// echo exec("mail -s 'This is the subject line' ".$row["email"]." < mail.txt");
 							echo exec("mpack -s 'Alert Message' /opt/lampp/htdocs/diplwmatiki/t_selida/alert/alert.png ".$row["email"]." -d mail.txt");
@@ -36,7 +40,7 @@ $value = "alert ";
 																
 					$count2 = $count3;
 				} else {
-					echo "Den parousiastike kati akomi\n";
+					echo htmlentities($message25, ENT_QUOTES,"utf-8");
 				}
 
 			sleep(2);

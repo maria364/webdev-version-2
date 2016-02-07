@@ -13,31 +13,30 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <h5 align="right">Καλώς ήλθες, <?php
-								echo ' '.$_SESSION['rightname'];
-								?> | <span id="logout_btn" style="cursor: pointer" align="right">Αποσύνδεση</span></h5>
+                <h5 align="right"><?php echo htmlentities($message31, ENT_QUOTES,"utf-8").' '.htmlentities($_SESSION['rightname'], ENT_QUOTES,"utf-8");
+								?> | <span id="logout_btn" style="cursor: pointer" align="right"><?php echo htmlentities($message117, ENT_QUOTES,"utf-8") ?></span></h5>
 				<ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll" >
-                        <a href="?p=dashboard" class="btn btn-primary btn-lg"><h4>Αρχική</h4></a>
+                        <a href="?p=dashboard" class="btn btn-primary btn-lg"><h4><?php echo htmlentities($message114, ENT_QUOTES,"utf-8") ?></h4></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="?p=streaming" class="btn btn-primary btn-lg"><h4>Streaming</h4></a>
+                        <a href="?p=streaming" class="btn btn-primary btn-lg"><h4><?php echo htmlentities($message115, ENT_QUOTES,"utf-8") ?></h4></a>
                     </li>
 					<li class="page-scroll">
-						  <a href="#" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><h4>Διαχείριση <br>συσκευής</h4></a>
+						  <a href="#" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><h4><?php echo htmlentities($message118, ENT_QUOTES,"utf-8") ?> <br><?php echo htmlentities($message119, ENT_QUOTES,"utf-8") ?></h4></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="?p=io-settings">I/O Ρυθμίσεις</a></li>
-							<li><a href="?p=prog-settings" type="button" id="progr-susk">Προγραμματισμός συσκευής</a></li>
-							<li><a href="?p=prog-settings#alarm-settings" id="alarmset">IO Output linkage</a></li>
-							<li><a href="?p=prog-settings#ftp-settings" id="alarmset">FTP Settings</a></li>
-							<li><a href="?p=prog-settings#http-settings" id="alarmset">HTTP alarm Settings</a></li>
+							<li><a href="?p=io-settings"><?php echo htmlentities($message120, ENT_QUOTES,"utf-8") ?></a></li>
+							<li><a href="?p=prog-settings" type="button" id="progr-susk"><?php echo htmlentities($message121, ENT_QUOTES,"utf-8") ?></a></li>
+							<li><a href="?p=prog-settings#alarm-settings" id="alarmset"><?php echo htmlentities($message122, ENT_QUOTES,"utf-8") ?></a></li>
+							<li><a href="?p=prog-settings#ftp-settings" id="alarmset"><?php echo htmlentities($message123, ENT_QUOTES,"utf-8") ?></a></li>
+							<li><a href="?p=prog-settings#http-settings" id="alarmset"><?php echo htmlentities($message124, ENT_QUOTES,"utf-8") ?></a></li>
 						  </ul>
                     </li>
 					<li class="page-scroll">
-                        <a href="?p=manual" class="btn btn-primary btn-lg"><h4>Χειροκίνητος <br>έλεγχος</h4></a>
+                        <a href="?p=manual" class="btn btn-primary btn-lg"><h4><?php echo htmlentities($message125, ENT_QUOTES,"utf-8") ?> <br><?php echo htmlentities($message126, ENT_QUOTES,"utf-8") ?></h4></a>
 						
                     </li>
 					<!--<li class="page-scroll">-->
@@ -52,15 +51,15 @@
                     <li class="page-scroll">
                         <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><h4>Χρήστες <br>συστήματος</h4>
 						  <span class="caret"></span></button>-->
-						<a href="#" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><h4>Διαχείριση <br>χρηστών</h4></a> 
+						<a href="#" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><h4><?php echo htmlentities($message118, ENT_QUOTES,"utf-8") ?> <br><?php echo htmlentities($message127, ENT_QUOTES,"utf-8") ?></h4></a> 
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="?p=register">Εισαγωγή χρηστών</a></li>
-							<li><a href="?p=users-list">Επεξεργασία χρηστών</a></li>
-							<li><a href="?p=mailinglist">Mailing list</a></li>
+							<li><a href="?p=register"><?php echo htmlentities($message128, ENT_QUOTES,"utf-8") ?></a></li>
+							<li><a href="?p=users-list"><?php echo htmlentities($message129, ENT_QUOTES,"utf-8") ?></a></li>
+							<li><a href="?p=mailinglist"><?php echo htmlentities($message130, ENT_QUOTES,"utf-8") ?></a></li>
 						  </ul>
                     </li>
 					<li class="page-scroll">
-                        <a href="?p=archive" class="btn btn-primary btn-lg"><h4>Αρχείο</h4></a>
+                        <a href="?p=archive" class="btn btn-primary btn-lg"><h4><?php echo htmlentities($message116, ENT_QUOTES,"utf-8") ?></h4></a>
                     </li>
 					
                 </ul>
@@ -70,3 +69,4 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+

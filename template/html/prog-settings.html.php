@@ -1,14 +1,13 @@
-<!-- Header -->
-    <header>
+<header>
         <div class="container">
             <div class="row">
                 
 				<div class="col-lg-6" >
 					<div class="intro-text" id="epil-date">
-								<p>Επιλέξτε ημερομηνία και ώρα προγραμματισμένης ενεργοποίησης της συσκευής.</p>
+								<p><?php echo htmlentities($message101, ENT_QUOTES,"utf-8") ?></p>
 								<!-- <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post"> -->
 								<div class="input-group">
-            						<input  class="form-control" id="daterangepicker" type="text" name="daterangepicker" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM"/>
+            						<input  class="form-control" id="daterangepicker" type="text" name="daterangepicker" value="01/01/2016 1:30 PM - 01/01/2016 2:00 PM"/>
             						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
         						</div>		
 
@@ -18,7 +17,7 @@
 				</div>
 				<div class="col-lg-6" >
 					<div class="scheduling">
-								<p>Προσωρινή απενεργοποίηση συστήματος.</p>
+								<p><?php echo htmlentities($message102, ENT_QUOTES,"utf-8") ?></p>
 								<select class="temp-stop"><option value=''>min</option>
 										<option value='30'>30 min</option>
 										<option value='60'>60 min</option>
@@ -35,13 +34,13 @@
         </div>
 		
 	
-    </header>
+</header>
 	
-	<section id="alarm-settings">
+<section id="alarm-settings">
 		<div class="container" id="alarm-set">
 			<div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>IO Settings</h2>
+                    <h2><?php echo htmlentities($message103, ENT_QUOTES,"utf-8") ?></h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -50,29 +49,29 @@
 					<div id="alarm-set">
 						<table class="table">
 							<tr>
-							<td><input type="checkbox" value=""><label id="io-linkage">IO Output linkage</label></td><td></td>
+							<td><input type="checkbox" value=""><label id="io-linkage"><?php echo htmlentities($message104, ENT_QUOTES,"utf-8") ?></label></td><td></td>
 							</tr>
 							<tr>
-							<td><input type="checkbox" value=""><label id="email-alarm">Email alarm</label></td><td></td>
+							<td><input type="checkbox" value=""><label id="email-alarm"><?php echo htmlentities($message105, ENT_QUOTES,"utf-8") ?></label></td><td></td>
 							</tr>
 							<tr>
-							<td><input type="checkbox" value=""><label id="ftp-alarm" >FTP alarm</label></td><td></td>
+							<td><input type="checkbox" value=""><label id="ftp-alarm" ><?php echo htmlentities($message106, ENT_QUOTES,"utf-8") ?></label></td><td></td>
 							</tr>
 							<tr>
-							<td><input type="checkbox" value=""><label id="http-alarm">HTTP alarm</label></td><td></td>
+							<td><input type="checkbox" value=""><label id="http-alarm"><?php echo htmlentities($message107, ENT_QUOTES,"utf-8") ?></label></td><td></td>
 							</tr>
 							<br/>
 							<tr>
-							<td><label>Alarm Interval(Second):</label></td><td><input type="text" value="10"></td>
+							<td><label><?php echo htmlentities($message108, ENT_QUOTES,"utf-8") ?>:</label></td><td><input type="text" value="10"></td>
 							</tr>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+</section>
 	
-	<section id="ftp-settings">
+<section id="ftp-settings">
 		<div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -104,9 +103,9 @@
 				</div>
 			</div>
 		</div>
-	</section>
+</section>
 	
-	<section id="http-settings">
+<section id="http-settings">
 		<div class="container">
 			<div class="row">
                 <div class="col-lg-12 text-center">
@@ -126,4 +125,4 @@
 				</div>
 			</div>
 		</div>
-	</section>
+</section>

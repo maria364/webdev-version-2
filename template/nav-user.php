@@ -1,4 +1,4 @@
- <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -13,18 +13,17 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <h5 align="right">Καλώς ήλθες, <?php
-								echo ' '.$_SESSION['rightname'];
-								?> | <span id="logout_btn"  align="right">Αποσύνδεση</span></h5>
+                <h5 align="right"><?php echo htmlentities($message31, ENT_QUOTES,"utf-8") .' '.htmlentities($_SESSION['rightname'], ENT_QUOTES,"utf-8");
+								?> | <span id="logout_btn"  align="right"><?php echo htmlentities($message117, ENT_QUOTES,"utf-8") ?></span></h5>
 				<ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll" >
-                        <a href="?p=dashboard" class="btn btn-primary btn-lg"><h4>Αρχική</h4></a>
+                        <a href="?p=dashboard" class="btn btn-primary btn-lg"><h4><?php echo htmlentities($message114, ENT_QUOTES,"utf-8") ?></h4></a>
                     </li>
                     <li class="page-scroll">
-                       <a href="?p=streaming" class="btn btn-primary btn-lg"><h4>Streaming</h4></a>
+                       <a href="?p=streaming" class="btn btn-primary btn-lg"><h4><?php echo htmlentities($message115, ENT_QUOTES,"utf-8") ?></h4></a>
                     </li>
                     <!-- <li class="page-scroll">
                         <a href="#" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><h4>Διαχείριση <br>στοιχείων</h4></a> 
@@ -35,7 +34,7 @@
 						  </ul>
                     </li> -->
 					<li class="page-scroll">
-                         <a href="?p=archive" class="btn btn-primary btn-lg"><h4>Αρχείο</h4></a>
+                         <a href="?p=archive" class="btn btn-primary btn-lg"><h4><?php echo htmlentities($message116, ENT_QUOTES,"utf-8") ?></h4></a>
                     </li>
 					
                 </ul>
@@ -44,4 +43,4 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
-    </nav>
+</nav>
